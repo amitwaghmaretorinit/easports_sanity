@@ -24,6 +24,9 @@ export const getTeamById = async (id: string) => {
   const query = `*[_type == "team" && _id == $id][0]{
     _id,
     teamName,
+    teamFoundingYear,
+    homeVenue,
+    championships,
     teamLogo{
       asset->{
         url

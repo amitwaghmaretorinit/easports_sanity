@@ -1,6 +1,8 @@
 import { getSports, getTeamsBySport } from "@/sanity/lib";
 import Link from "next/link";
 import Image from "next/image";
+import { CardContent,Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface SportPageProps {
   sport: Sport;
@@ -10,36 +12,48 @@ interface SportPageProps {
 export default function SportPage(props: SportPageProps) {
   const { teams, sport } = props;
   return (
-    <div className="p-8">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        {sport.sportHeader}
-      </h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {teams.map((team) => (
-          <Link href={`/${sport.sportName}/${team._id}`} key={team._id}>
-            <div className="border border-gray-300 rounded-lg p-4 shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer">
-              {team.teamLogo?.asset?.url && (
-                <div className="w-24 h-24 mx-auto mb-4">
-                  <Image
-                    src={team.teamLogo.asset.url}
-                    alt={`${team.teamName} Logo`}
-                    width={96}
-                    height={96}
-                    className="rounded-full object-cover"
-                  />
+    <div className="min-h-screen">
+      <div className="max-w-6xl mx-auto">
+        <h1 className="text-4xl font-bold mb-8 text-center text-blue-800">
+          {sport.sportHeader}
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teams.map((team) => (
+            <Link href={`/${sport.sportName}/${team._id}`} key={team._id} className="transform hover:scale-105 transition-transform duration-300">
+              <Card className="overflow-hidden m-2">
+                <div className="relative h-48 bg-gradient-to-r from-blue-500 to-blue-700">
+                  {team.teamLogo?.asset?.url && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <Image
+                        src={team.teamLogo.asset.url}
+                        alt={`${team.teamName} Logo`}
+                        width={120}
+                        height={120}
+                        className="rounded-full border-4 border-white shadow-lg"
+                      />
+                    </div>
+                  )}
                 </div>
-              )}
-              <h2 className="text-xl font-semibold text-center">
-                {team.teamName}
-              </h2>
-              <p className="text-gray-600 text-center mt-2">
-                <strong>Sport:</strong> {team.teamSport?.sportName || "Unknown"}
-              </p>
-            </div>
-          </Link>
-        ))}
+                <CardContent className="p-6">
+                  <h2 className="text-2xl font-semibold text-center mb-2">
+                    {team.teamName}
+                  </h2>
+                  <div className="flex justify-center">
+                    <Badge variant="secondary" className="mt-2">
+                      {team.teamSport?.sportName || "Unknown Sport"}
+                    </Badge>
+                  </div>
+                  <p className="text-gray-600 text-center mt-4 text-sm">
+                    Click to view team details
+                  </p>
+                </CardContent>
+              </Card>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
+
   );
 }
 export const getStaticPaths = async () => {

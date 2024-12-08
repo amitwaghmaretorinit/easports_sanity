@@ -24,5 +24,18 @@ export default defineType({
       name: "teamLogo",
       type: "image",
     },
+    {
+      name: "teamFoundingYear",
+      type : "date"
+    },
+    {
+      name: "homeVenue",
+      type : "string"
+    },
+    {
+      name :"championships",
+      type: "number"
+    },
+    
   ],
 });
