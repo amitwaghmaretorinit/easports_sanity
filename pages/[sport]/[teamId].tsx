@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Header from "@/components/ui/header";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { getTeamById, getTeams } from "@/sanity/lib";
+import { getTeamById } from "@/sanity/lib";
 // import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -16,6 +16,7 @@ import {
   Trophy,
   Users,
 } from "lucide-react";
+import { GetServerSidePropsContext } from "next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
@@ -230,28 +231,12 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
   );
 }
 
-export const getStaticPaths = async () => {
-  const teams = await getTeams(); // Fetch all teams
 
-  const paths = teams.map((team: Team) => {
-    return {
-      params: {
-        sport: team.teamSport.sportName.toLowerCase(),
-        teamId: team._id,
-      },
-    };
-  });
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
-
-export const getServerSideProps = async ({
-  params,
-}: {
-  params: { sport: string; teamId: string };
-}) => {
-  const team = await getTeamById(params.teamId);
+export const getServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
+  const { teamId } = context.params || {};
+  let team = {};
+  if (teamId) team = await getTeamById(teamId.toString());
   return { props: { team } };
 };
