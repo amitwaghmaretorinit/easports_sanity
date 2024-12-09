@@ -247,7 +247,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async ({
+export const getServerSideProps = async ({
   params,
 }: {
   params: { sport: string; teamId: string };
