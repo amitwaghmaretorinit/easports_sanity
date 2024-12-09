@@ -15,11 +15,11 @@ export default async function handler(
     }
 
     if (_type === "team" && _id && teamSport.sportName) {
-      console.log({teamSport})
-      // await res.revalidate(`/${teamSport.sportName.toLowerCase()}/${_id}`);
+      const revalidatePath=`/${teamSport.sportName.toLowerCase()}/${_id}`
+      await res.revalidate(revalidatePath);
       return res.json({
         revalidated: true,
-        path: `/${teamSport.sportName.toLowerCase()}/${_id}`,
+        path: revalidatePath,
       });
     }
 

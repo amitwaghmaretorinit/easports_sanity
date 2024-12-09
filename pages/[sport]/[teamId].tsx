@@ -252,6 +252,7 @@ export const getStaticProps = async ({
 }: {
   params: { sport: string; teamId: string };
 }) => {
-  const team = await getTeamById(params.teamId);
-  return { props: { team }, revalidate: 10 };
+  const team: Team = await getTeamById(params.teamId);
+  console.log(team.homeVenue)
+  return { props: { team },revalidate: 60};
 };

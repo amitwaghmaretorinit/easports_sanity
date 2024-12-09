@@ -35,7 +35,10 @@ export const getTeamsBySport = async (sportName: string) => {
 };
 
 export const getTeamById = async (id: string) => {
+  const timestamp = new Date().getTime();
+
   const query = `*[_type == "team" && _id == $id][0]{
+    ...,
     _id,
     teamName,
     teamFoundingYear,
@@ -50,7 +53,7 @@ export const getTeamById = async (id: string) => {
       sportName
     }
   }`;
-  return client.fetch(query, { id });
+return client.fetch(query, { id, timestamp },{cache:'no-store'});
 };
 
 export const getTeams = async () => {
