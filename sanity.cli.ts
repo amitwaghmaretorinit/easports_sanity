@@ -9,4 +9,4 @@ const projectId = "i2ui9ehw"
 const dataset = "production"
 // process.env.NEXT_PUBLIC_SANITY_DATASET
 
-export default defineCliConfig({ api: { projectId, dataset } })
+export default  defineCliConfig({ api: { projectId, dataset } })
