@@ -253,5 +253,5 @@ export const getStaticProps = async ({
   params: { sport: string; teamId: string };
 }) => {
   const team = await getTeamById(params.teamId);
-  return { props: { team }, revalidate: 10 };
+  return { props: { team } };
 };
