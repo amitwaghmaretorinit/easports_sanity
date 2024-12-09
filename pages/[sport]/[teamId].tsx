@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Header from "@/components/ui/header";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getTeamById, getTeams } from "@/sanity/lib";
@@ -35,6 +37,7 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br  via-white to-purple-100 p-8">
+      <Header title={team.teamName} />
       <div className="max-w-4xl mx-auto">
         <Button
           variant="ghost"
@@ -54,6 +57,7 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
             <div className="relative h-64 bg-gradient-to-r from-blue-500 to-purple-600">
               {team.teamLogo?.asset?.url && (
                 <motion.div
+                 //@ts-ignore
                   className="absolute inset-0 flex items-center justify-center"
                   initial={{ scale: 0.8, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -82,6 +86,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
                 <motion.div
+                 //@ts-ignore
+                
                   className="flex flex-col items-center"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -92,6 +98,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                   </span>
                 </motion.div>
                 <motion.div
+                 //@ts-ignore
+                
                   className="flex flex-col items-center"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -102,6 +110,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                   </span>
                 </motion.div>
                 <motion.div
+                 //@ts-ignore
+                
                   className="flex flex-col items-center"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -112,6 +122,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                   </span>
                 </motion.div>
                 <motion.div
+                 //@ts-ignore
+                
                   className="flex flex-col items-center"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -135,6 +147,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                         {displayedRoster?.map((player, index) => (
                           <motion.div
                             key={index}
+                             //@ts-ignore
+                
                             className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
                             whileHover={{ scale: 1.03 }}
                           >
@@ -188,6 +202,8 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                           {team.recentResults.map((result, index) => (
                             <motion.tr
                               key={index}
+                               //@ts-ignore
+                
                               className="border-b last:border-b-0"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}

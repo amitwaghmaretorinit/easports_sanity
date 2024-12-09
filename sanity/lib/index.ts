@@ -1,7 +1,20 @@
 import { client } from "./client";
 
+export const getPageInfo = async () => {
+  return client.fetch(`*[_type == "pageInfo"][0]`);
+};
+
 export const getSports = async () => {
-  return client.fetch(`*[_type == "sport"]`);
+  return client.fetch(`*[_type == "sport"]{
+    _id,
+    sportName,
+    sportHeader,
+    sportIcon{
+      asset->{
+        url
+      }
+    }
+    }`);
 };
 
 export const getTeamsBySport = async (sportName: string) => {
@@ -14,7 +27,8 @@ export const getTeamsBySport = async (sportName: string) => {
       }
     },
     teamSport->{
-      sportName
+      sportName,
+      sportHeader
     }
   }`;
   return client.fetch(query, { sportName });

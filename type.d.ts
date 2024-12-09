@@ -1,7 +1,8 @@
 declare type Sport = {
   sportName: string;
   sportHeader?: string;
-  sportIcon?: string;
+  sportIcon?: { asset: { url: string } };
+  _id: string;
 };
 declare type Team = {
   teamName: string;
