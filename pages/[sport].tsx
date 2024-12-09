@@ -76,5 +76,5 @@ export const getStaticProps = async (obj: { params: { sport: string } }) => {
     return { notFound: true };
   }
   const teams = await getTeamsBySport(sport);
-  return { props: { sport: selectedSport, teams } };
+  return { props: { sport: selectedSport, teams },revalidate: 10 };
 };
