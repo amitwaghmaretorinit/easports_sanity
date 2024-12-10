@@ -52,10 +52,7 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
           <Card className="overflow-hidden backdrop-blur-sm shadow-xl">
             <div className="relative h-64 bg-gradient-to-r from-blue-500 to-purple-600">
               {team.teamLogo?.asset?.url && (
-                <div
-                  //@ts-ignore
-                  className="absolute inset-0 flex items-center justify-center"
-                >
+                <div className="absolute inset-0 flex items-center justify-center">
                   <Image
                     src={team.teamLogo.asset.url}
                     alt={`${team.teamName} Logo`}
@@ -78,44 +75,28 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-                <div
-                  //@ts-ignore
-
-                  className="flex flex-col items-center"
-                >
+                <div className="flex flex-col items-center">
                   <Calendar className="h-8 w-8 mb-2 text-blue-600" />
                   <span className="text-sm text-gray-600">Founded</span>
                   <span className="font-semibold">
                     {team.teamFoundingYear || "Unknown"}
                   </span>
                 </div>
-                <div
-                  //@ts-ignore
-
-                  className="flex flex-col items-center"
-                >
+                <div className="flex flex-col items-center">
                   <MapPin className="h-8 w-8 mb-2 text-blue-600" />
                   <span className="text-sm text-gray-600">Home Venue</span>
                   <span className="font-semibold">
                     {team.homeVenue || "Unknown"}
                   </span>
                 </div>
-                <div
-                  //@ts-ignore
-
-                  className="flex flex-col items-center"
-                >
+                <div className="flex flex-col items-center">
                   <Trophy className="h-8 w-8 mb-2 text-blue-600" />
                   <span className="text-sm text-gray-600">Championships</span>
                   <span className="font-semibold">
                     {team.championships || 0}
                   </span>
                 </div>
-                <div
-                  //@ts-ignore
-
-                  className="flex flex-col items-center"
-                >
+                <div className="flex flex-col items-center">
                   <Users className="h-8 w-8 mb-2 text-blue-600" />
                   <span className="text-sm text-gray-600">Roster Size</span>
                   <span className="font-semibold">
@@ -136,8 +117,6 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                         {displayedRoster?.map((player, index) => (
                           <div
                             key={index}
-                            //@ts-ignore
-
                             className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
                           >
                             <p className="font-semibold text-lg">
@@ -190,8 +169,6 @@ export default function TeamDetails({ team }: TeamDetailsProps) {
                           {team.recentResults.map((result, index) => (
                             <tr
                               key={index}
-                              //@ts-ignore
-
                               className="border-b last:border-b-0"
                             >
                               <td className="p-2">{result.date}</td>
@@ -253,6 +230,6 @@ export const getStaticProps = async ({
   params: { sport: string; teamId: string };
 }) => {
   const team: Team = await getTeamById(params.teamId);
-  console.log(team.homeVenue)
-  return { props: { team },revalidate: 10};
+  console.log(team.homeVenue);
+  return { props: { team }, revalidate: 10 };
 };
